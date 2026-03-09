@@ -1,0 +1,528 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Source Software Development — Phedra Nguyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+</head>
+
+<body>
+
+<!-- Decorative blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="container">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-card">
+
+      <div class="avatar-wrap">
+        <img src="{% static 'myapp/images/ava.jpg' %}" class="avatar" alt="Avatar">
+        <div class="avatar-ring"></div>
+      </div>
+
+      <h1 class="name">Phedra Nguyen</h1>
+      <p class="role">Software Engineering Student</p>
+
+      <div class="tag-row">
+        <span class="tag">AI</span>
+        <span class="tag">ML</span>
+        <span class="tag">SE</span>
+      </div>
+
+      <p class="intro">
+        Software Engineering student at Saigon University, Faculty of Information Technology.
+        Experienced in student-level innovation and product research competitions (Level 2).
+        This site presents the final assignment for the Open Source Software Development course.
+      </p>
+
+      <div class="links">
+        <a href="{% static 'myapp/ossd_phedra.pdf' %}" target="_blank" class="link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Resume
+        </a>
+        <a href="https://github.com/myphedra" target="_blank" class="link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+        </a>
+        <a href="https://facebook.com/phuong.nguyentruongmai" target="_blank" class="link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+        </a>
+      </div>
+    </div>
+
+    <!-- TOC Card -->
+    <div class="toc-card">
+      <p class="toc-label">Contents</p>
+      <nav class="toc">
+        <a href="#intro" class="toc-item toc-h1">1. Introduction</a>
+        <a href="#bg" class="toc-item toc-h2">1.1 Background &amp; Motivation</a>
+        <a href="#objectives" class="toc-item toc-h2">1.2 Project Objectives</a>
+        <a href="#scope" class="toc-item toc-h2">1.3 Project Scope</a>
+        <a href="#theory" class="toc-item toc-h1">2. Theoretical Foundations</a>
+        <a href="#rag" class="toc-item toc-h2">2.1 RAG</a>
+        <a href="#embed" class="toc-item toc-h2">2.2 Embeddings &amp; Vector DB</a>
+        <a href="#llm" class="toc-item toc-h2">2.3 Large Language Models</a>
+        <a href="#langchain" class="toc-item toc-h2">2.4 LangChain</a>
+        <a href="#prompt" class="toc-item toc-h2">2.5 Prompt Engineering</a>
+        <a href="#design" class="toc-item toc-h1">3. System Design</a>
+        <a href="#arch" class="toc-item toc-h2">3.1 Architecture</a>
+        <a href="#flow" class="toc-item toc-h2">3.2 Data Flow</a>
+        <a href="#components" class="toc-item toc-h2">3.3 Components</a>
+      </nav>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <header class="page-header">
+      <div class="header-badge">Open Source Software Development · 2026</div>
+      <h1 class="page-title">Final Assignment Documentation</h1>
+      <p class="page-subtitle">
+        This page presents the theoretical foundations and system design of the final assignment
+        for the Open Source Software Development course at Saigon University.
+        The project implements a Retrieval-Augmented Generation (RAG) system for intelligent
+        PDF document question answering, supporting Vietnamese and English with fully local,
+        privacy-preserving inference powered entirely by open-source tools.
+      </p>
+    </header>
+
+    <!-- INTRODUCTION -->
+    <section id="intro" class="section">
+      <div class="section-number">01</div>
+      <h2 class="section-title">Introduction</h2>
+
+      <div id="bg" class="subsection">
+        <h3>1.1 Background and Motivation</h3>
+        <p>
+          In the current digital era, the volume of information stored inside electronic documents
+          is growing at an unprecedented rate. Efficiently searching for and extracting relevant
+          knowledge from such documents has become one of the most pressing challenges in applied
+          Natural Language Processing (NLP). Traditional retrieval methods — such as keyword-based
+          search — are fundamentally limited: they match surface-level terms rather than understanding
+          the true semantic intent behind a user's query, frequently returning irrelevant results or
+          missing critical information expressed in different words.
+        </p>
+        <p>
+          The RAG (Retrieval-Augmented Generation) paradigm was developed to address exactly this gap.
+          By combining two complementary capabilities, RAG systems can understand nuanced questions
+          and return contextually grounded, human-readable answers:
+        </p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <strong>Information Retrieval</strong>
+            <p>Semantically locate and rank the most relevant passages from a structured knowledge base using dense vector similarity search, going far beyond keyword overlap.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✍️</div>
+            <strong>Natural Language Generation</strong>
+            <p>Produce fluent, factually grounded, and context-aware answers by feeding retrieved passages as context to a large language model during inference.</p>
+          </div>
+        </div>
+        <p>
+          This project is motivated by the practical need to build such a system that runs entirely
+          on a personal computer using open-source models and libraries — making advanced AI-powered
+          document Q&amp;A accessible without reliance on paid cloud services or proprietary APIs.
+          Special emphasis is placed on supporting the Vietnamese language, which is historically
+          underserved by mainstream LLM research.
+        </p>
+      </div>
+
+      <div id="objectives" class="subsection">
+        <h3>1.2 Project Objectives</h3>
+        <p>The project sets out the following specific and measurable goals:</p>
+        <ol class="styled-list">
+          <li>Build a user-friendly web interface using Django that allows users to upload PDF documents and ask questions interactively.</li>
+          <li>Integrate a multilingual embedding model to convert raw document text into high-dimensional semantic vectors that capture meaning across languages.</li>
+          <li>Deploy a FAISS vector database for efficient, scalable storage of document embeddings and fast approximate nearest-neighbor retrieval at query time.</li>
+          <li>Integrate the Qwen2.5:7b large language model — optimized for Vietnamese — via the Ollama local inference framework, enabling fully offline operation.</li>
+          <li>Build a complete end-to-end RAG pipeline, from PDF ingestion and text splitting through embedding, indexing, retrieval, prompt construction, and final answer generation.</li>
+          <li>Optimize system performance, response accuracy, and multilingual quality, with automatic language detection to ensure answers are returned in the user's language.</li>
+        </ol>
+      </div>
+
+      <div id="scope" class="subsection">
+        <h3>1.3 Project Scope</h3>
+        <p>The project is scoped and constrained as follows:</p>
+        <ul class="styled-list">
+          <li>Input format is limited to PDF documents uploaded directly by the user via the web interface.</li>
+          <li>Full and high-quality support for Vietnamese and English, with general support for 50+ additional languages via the multilingual embedding model.</li>
+          <li>Automatic detection of the user's query language, with prompt templates dynamically selected to produce a response in the matching language.</li>
+          <li>Entirely local deployment on a personal computer — no external cloud APIs, no data transmission, no internet required after the initial model download.</li>
+          <li>Exclusive use of open-source frameworks, models, and libraries: LangChain, FAISS, HuggingFace Transformers, Ollama, and Qwen2.5.</li>
+          <li>The system does not perform real-time web search; it answers only from the content of documents uploaded by the user.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- THEORY -->
+    <section id="theory" class="section">
+      <div class="section-number">02</div>
+      <h2 class="section-title">Theoretical Foundations</h2>
+
+      <div id="rag" class="subsection">
+        <h3>2.1 Retrieval-Augmented Generation (RAG)</h3>
+        <p>
+          RAG is an AI architecture that enhances language model outputs by grounding them
+          in retrieved external knowledge. Rather than relying solely on the parametric memory
+          encoded in model weights during pre-training, a RAG system dynamically retrieves the most
+          relevant document passages from an external knowledge base at inference time, then provides
+          those passages as context to the language model so it can generate a precise, factually
+          grounded answer.
+        </p>
+        <p>The RAG architecture can be formally expressed as:</p>
+        <div class="callout">
+          <span class="callout-icon">📐</span>
+          <strong>RAG(x) = Generator( x, Retriever(x) )</strong><br>
+          Where <em>x</em> is the user's input query, <em>Retriever(x)</em> fetches the top-k most
+          semantically relevant document chunks from the vector store, and <em>Generator</em> is the
+          large language model that synthesizes a coherent answer conditioned on both the query and
+          the retrieved context.
+        </div>
+        <p>
+          Compared to traditional keyword-based search, RAG offers several key advantages: it understands
+          the deep semantic intent of a query, is not limited by exact term matching, can reference
+          content from user-provided documents that the model was never trained on, and allows the
+          knowledge base to be updated simply by re-indexing new documents — without any model
+          retraining. This makes RAG particularly well-suited for domain-specific or document-centric
+          question answering tasks.
+        </p>
+        <div class="callout">
+          <span class="callout-icon">💡</span>
+          RAG effectively bridges the gap between the static parametric knowledge frozen inside a
+          pre-trained model and the dynamic, domain-specific information stored in user-provided
+          documents — making it ideal for enterprise document Q&amp;A, legal research, academic
+          literature review, and any scenario where answers must be grounded in a specific corpus.
+        </div>
+      </div>
+
+      <div id="embed" class="subsection">
+        <h3>2.2 Text Embeddings and Vector Databases</h3>
+
+        <h4>2.2.1 Text Embedding</h4>
+        <p>
+          Text embedding is the process of mapping natural language into fixed-dimensional numerical
+          vectors in a continuous high-dimensional space, formally expressed as:
+        </p>
+        <div class="callout">
+          <span class="callout-icon">📐</span>
+          <strong>E : Text → ℝ<sup>d</sup></strong><br>
+          Where <em>d</em> is the dimensionality of the output vector — commonly 384, 512, or 768
+          dimensions. Semantically similar texts are mapped to geometrically close vectors in this
+          space, while semantically unrelated texts are mapped far apart.
+        </div>
+        <p>
+          This property enables <strong>semantic search</strong>: finding the most relevant document
+          chunks based on conceptual meaning rather than exact keyword overlap. Similarity between
+          vectors is measured using cosine similarity or Euclidean distance.
+        </p>
+        <p>
+          This project uses the <strong>paraphrase-multilingual-mpnet-base-v2</strong> model from
+          HuggingFace's Sentence Transformers library. Key characteristics of this model include:
+        </p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <strong>MPNet Architecture</strong>
+            <p>Combines masked and permuted language modeling, achieving state-of-the-art quality for multilingual semantic similarity tasks.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <strong>50+ Languages</strong>
+            <p>Trained on large multilingual corpora including Vietnamese, enabling high-quality cross-lingual semantic search out of the box.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📏</div>
+            <strong>768-Dimensional Output</strong>
+            <p>Produces rich, high-dimensional embeddings that capture fine-grained semantic nuance suitable for document retrieval.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <strong>CPU-Friendly</strong>
+            <p>Designed to run efficiently on consumer hardware without GPU requirements, enabling local deployment on personal computers.</p>
+          </div>
+        </div>
+
+        <h4>2.2.2 FAISS — Facebook AI Similarity Search</h4>
+        <p>
+          FAISS is a high-performance open-source library developed by Facebook AI Research,
+          designed specifically for efficient similarity search and clustering of dense floating-point
+          vectors. In the context of a RAG system, FAISS serves as the vector database that stores
+          all document chunk embeddings and executes fast retrieval at query time.
+        </p>
+        <p>Key advantages of FAISS in this project:</p>
+        <ul class="styled-list">
+          <li><strong>Scalability:</strong> Supports fast approximate nearest-neighbor (ANN) retrieval over millions of vectors with sub-linear query time.</li>
+          <li><strong>Flexible Indexing:</strong> Offers multiple index types (flat, IVF, HNSW) with different trade-offs between speed, memory, and recall accuracy.</li>
+          <li><strong>GPU Acceleration:</strong> Can leverage NVIDIA GPUs for dramatic speedups when available, while also running efficiently on CPU.</li>
+          <li><strong>Memory-Efficient:</strong> Supports product quantization and other compression techniques to reduce memory footprint for large indices.</li>
+          <li><strong>Open Source &amp; Free:</strong> Released under MIT license, with native Python bindings for easy integration with LangChain.</li>
+        </ul>
+      </div>
+
+      <div id="llm" class="subsection">
+        <h3>2.3 Large Language Models (LLMs)</h3>
+
+        <h4>2.3.1 Qwen2.5</h4>
+        <p>
+          Large Language Models are transformer-based neural networks pre-trained on massive multilingual
+          text corpora spanning hundreds of billions to trillions of tokens. Through this pre-training,
+          they develop broad language understanding capabilities including question answering,
+          summarization, translation, reasoning, and code generation — which can then be applied
+          to domain-specific tasks via prompting alone, without fine-tuning.
+        </p>
+        <p>
+          This project uses <strong>Qwen2.5:7b</strong>, developed by Alibaba Cloud. It was selected
+          for this project due to its exceptional Vietnamese language performance — outperforming models
+          such as Llama 3 on Vietnamese benchmarks — combined with a manageable 7-billion parameter
+          count that runs feasibly on consumer hardware. Key characteristics:
+        </p>
+        <ul class="styled-list">
+          <li><strong>Next-generation Transformer architecture</strong> with improved attention mechanisms and training efficiency.</li>
+          <li><strong>128K token context window</strong>, allowing the model to process long documents and extensive retrieved context without truncation.</li>
+          <li><strong>Trained on multilingual corpus</strong> with substantial Vietnamese content, producing high-quality Vietnamese responses.</li>
+          <li><strong>7B parameters</strong> — a well-balanced scale offering strong generation quality while remaining practical for local inference on a laptop or desktop.</li>
+          <li><strong>Outperforms Llama3</strong> on Vietnamese language understanding and generation tasks.</li>
+        </ul>
+
+        <div class="tech-row">
+          <div class="tech-chip">Qwen2.5:7b</div>
+          <div class="tech-chip">128K Context</div>
+          <div class="tech-chip">Vietnamese-optimized</div>
+          <div class="tech-chip">Multilingual</div>
+          <div class="tech-chip">Local inference</div>
+        </div>
+
+        <h4>2.3.2 Ollama</h4>
+        <p>
+          Ollama is an open-source runtime framework that simplifies the local deployment and execution
+          of large language models on personal computers. Rather than requiring complex CUDA configurations
+          or cloud API subscriptions, Ollama abstracts model management into a single CLI tool and exposes
+          a clean REST API compatible with standard HTTP clients.
+        </p>
+        <p>
+          In this project, Ollama serves the Qwen2.5:7b model locally, providing a fully offline,
+          privacy-preserving inference backend. Once the model is downloaded, the system operates
+          without any internet connection — all user data and document content remains entirely on the
+          local machine.
+        </p>
+      </div>
+
+      <div id="langchain" class="subsection">
+        <h3>2.4 LangChain Framework</h3>
+        <p>
+          LangChain is an open-source Python framework purpose-built for developing applications
+          powered by large language models. Its core design philosophy is composability: each step
+          in an LLM pipeline is represented as a modular, interchangeable component that can be
+          combined with others to build complex workflows with minimal boilerplate code.
+        </p>
+        <p>The key components used in this project are:</p>
+        <div class="component-list">
+          <div class="component-item">
+            <div class="comp-tag">Document Loaders</div>
+            <p>Ingest and parse documents from various file formats (PDF, DOCX, TXT, etc.) into LangChain's standardized Document objects, preserving metadata such as page numbers and source paths.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Text Splitters</div>
+            <p>Divide long documents into smaller, overlapping chunks using strategies such as recursive character splitting. Overlap between chunks ensures that semantic context is not lost at chunk boundaries.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Embeddings</div>
+            <p>Provide a unified interface for generating vector representations of text chunks, supporting HuggingFace models, OpenAI, and other providers through consistent API abstraction.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Vector Stores</div>
+            <p>Manage storage and retrieval of document embeddings. LangChain's FAISS integration handles index creation, persistence, and similarity search queries transparently.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Retrievers</div>
+            <p>Expose a standardized interface for fetching the top-k most relevant document chunks given a query embedding, decoupling retrieval logic from the rest of the pipeline.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Chains</div>
+            <p>Connect all components into an end-to-end pipeline — from raw user query, through retrieval and prompt construction, to final LLM-generated answer — using LangChain's expression language (LCEL).</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="prompt" class="subsection">
+        <h3>2.5 Prompt Engineering</h3>
+        <p>
+          Prompt Engineering is the practice of carefully designing and optimizing the input text
+          (prompt) provided to a language model in order to guide it toward producing accurate,
+          relevant, and appropriately formatted outputs. In a RAG system, the prompt is the critical
+          bridge between the retrieved document context and the final generated answer — a poorly
+          designed prompt can cause the model to hallucinate, ignore the context, or respond in the
+          wrong language.
+        </p>
+        <p>An effective RAG prompt in this project is structured around four elements:</p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <strong>Instruction</strong>
+            <p>Directs the model on how to behave: use only the provided context, admit uncertainty if the answer is not present, and keep responses concise (3–4 sentences).</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <strong>Context</strong>
+            <p>The concatenated top-k document chunks retrieved by FAISS, providing the factual grounding from which the model must derive its answer.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">❓</div>
+            <strong>Question</strong>
+            <p>The user's original query, preserved verbatim so the model understands exactly what is being asked without paraphrase distortion.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <strong>Constraint</strong>
+            <p>Explicit formatting and length constraints that prevent over-verbose outputs and ensure the model responds strictly in the detected user language.</p>
+          </div>
+        </div>
+        <p>
+          A key design feature of this system's prompt engineering is <strong>automatic language
+          detection</strong>. The system inspects the user's query for Vietnamese diacritical
+          characters; if detected, a Vietnamese-language prompt template is selected, instructing
+          the model to respond entirely in Vietnamese. Otherwise, the English prompt template is
+          used. This ensures language-appropriate responses without requiring the user to specify
+          their preferred language explicitly.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- SYSTEM DESIGN -->
+    <section id="design" class="section">
+      <div class="section-number">03</div>
+      <h2 class="section-title">System Design</h2>
+
+      <div id="arch" class="subsection">
+        <h3>3.1 System Architecture</h3>
+        <p>
+          The system is designed following a clean multi-layer architecture that separates concerns
+          across four distinct tiers, each with a well-defined responsibility. This design promotes
+          modularity, independent replaceability of components, and straightforward extensibility
+          as the system evolves.
+        </p>
+        <div class="arch-diagram">
+          <div class="arch-node node-ui">🌐 Presentation Layer<span>Django Web Interface · File Upload · Answer Display</span></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-node node-pipe">⚙️ Application Layer<span>LangChain · RAG Pipeline · Prompt Engineering</span></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-row">
+            <div class="arch-node node-store">🗄️ Data Layer<span>FAISS Vector Store · MPNet Embeddings (768-dim)</span></div>
+            <div class="arch-node node-llm">🤖 Model Layer<span>Qwen2.5:7b via Ollama · Local LLM Inference</span></div>
+          </div>
+        </div>
+        <p>
+          The <strong>Presentation Layer</strong> is built with Django and handles all user-facing
+          interactions: PDF file uploads, question input, and answer display. The
+          <strong>Application Layer</strong> orchestrates the entire RAG workflow via LangChain,
+          including document processing, prompt construction, and response generation. The
+          <strong>Data Layer</strong> manages the FAISS vector index and the multilingual embedding
+          model. The <strong>Model Layer</strong> runs Qwen2.5:7b locally through Ollama, receiving
+          prompts and returning generated answers entirely offline.
+        </p>
+      </div>
+
+      <div id="flow" class="subsection">
+        <h3>3.2 Data Flow</h3>
+        <p>The system operates through two distinct and sequential processing flows:</p>
+        <div class="flow-grid">
+          <div class="flow-card">
+            <div class="flow-label">📥 Document Ingestion Flow</div>
+            <div class="flow-steps">
+              <span>PDF Upload</span>
+              <span class="arrow">→</span>
+              <span>Text Extraction</span>
+              <span class="arrow">→</span>
+              <span>Chunk Splitting</span>
+              <span class="arrow">→</span>
+              <span>Embedding</span>
+              <span class="arrow">→</span>
+              <span>FAISS Index</span>
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-label">🔎 Query Processing Flow</div>
+            <div class="flow-steps">
+              <span>User Query</span>
+              <span class="arrow">→</span>
+              <span>Lang Detect</span>
+              <span class="arrow">→</span>
+              <span>Top-k Retrieve</span>
+              <span class="arrow">→</span>
+              <span>Prompt Build</span>
+              <span class="arrow">→</span>
+              <span>LLM Answer</span>
+            </div>
+          </div>
+        </div>
+        <p>
+          During document ingestion, uploaded PDFs are parsed into raw text, split into overlapping
+          chunks of up to 1,000 characters (with 100-character overlap to preserve cross-boundary
+          context), converted into 768-dimensional embeddings, and stored in the FAISS index.
+          During query processing, the user's question is embedded using the same model, the top-3
+          most similar chunks are retrieved from FAISS, assembled into a structured prompt together
+          with the language-appropriate instruction template, and passed to Qwen2.5:7b via Ollama
+          for answer generation.
+        </p>
+      </div>
+
+      <div id="components" class="subsection">
+        <h3>3.3 Component Description</h3>
+        <div class="component-list">
+          <div class="component-item">
+            <div class="comp-tag">Document Loader</div>
+            <p>Uses <strong>PDFPlumberLoader</strong> from LangChain Community to read uploaded PDF files. PDFPlumber accurately extracts text content including tables and multi-column layouts, preserves page structure and layout information, and handles complex PDFs more robustly than simpler text extractors.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Text Splitter</div>
+            <p>Uses LangChain's <strong>RecursiveCharacterTextSplitter</strong> with a chunk size of 1,000 characters and a 100-character overlap. The recursive strategy attempts to split on paragraph boundaries first, then sentence boundaries, then words — minimizing semantic fragmentation. The overlap window ensures that information near chunk boundaries is captured by adjacent chunks.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Embedding Model</div>
+            <p>Uses <strong>paraphrase-multilingual-mpnet-base-v2</strong> via LangChain's HuggingFaceEmbeddings wrapper. Embeddings are computed on CPU with normalized output vectors, producing 768-dimensional representations that support semantic search across Vietnamese, English, Chinese, and 50+ other languages.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Vector Store (FAISS)</div>
+            <p>All document chunk embeddings are stored in a <strong>FAISS flat index</strong> built via LangChain's FAISS integration. At query time, a retriever is configured with <code>search_type="similarity"</code> and <code>k=3</code>, returning the three most semantically relevant chunks to serve as context for the language model.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">LLM Integration</div>
+            <p><strong>Qwen2.5:7b</strong> is served locally via the Ollama runtime, accessed through LangChain's Ollama integration. The model receives a fully constructed prompt containing the retrieval context and the user's question, and generates a concise, grounded answer. All inference runs on the local machine — no data leaves the user's device.</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Prompt Engine</div>
+            <p>The prompt engine automatically detects the language of the user's query by scanning for Vietnamese diacritical characters. Based on the detection result, it selects the appropriate language-specific prompt template — Vietnamese or English — and injects the retrieved context and user question before dispatching to the LLM.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="page-footer">
+      <div class="footer-line"></div>
+      <p>© 2026 Phedra Nguyen · Open Source Software Development · Saigon University</p>
+    </footer>
+
+  </main>
+
+</div>
+
+</body>
+</html>
