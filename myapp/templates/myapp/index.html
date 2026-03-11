@@ -4,11 +4,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open Source Software Development — Phedra Nguyen</title>
+<title>Portfolio — Phedra Nguyen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+<style>
+  /* ── Project card extras ── */
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .project-number {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-light);
+    background: var(--bg);
+    border: 1px solid #e8e4de;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .project-title-wrap h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .project-title-wrap .project-tagline {
+    font-size: 0.83rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin: 0;
+  }
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    background: #1a1e2a;
+    color: #e8eaf0;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    border: 1px solid #3a3e4a;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .github-btn:hover {
+    background: #2d3248;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    color: #fff;
+  }
+  .github-btn svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+  .project-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--pink), var(--lavender), var(--mint));
+    border: none;
+    margin: 28px 0;
+    border-radius: 2px;
+    opacity: 0.4;
+  }
+  .skills-section h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  /* Role badges for team members */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .team-member {
+    background: var(--mint-soft);
+    border: 1px solid #c0e8d8;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+  }
+  .team-member strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .team-member span {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  /* About section extras */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .skill-card {
+    background: var(--lav-soft);
+    border: 1px solid #d6cef0;
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .skill-card .skill-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .skill-card strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .skill-card p { font-size: 0.76rem; color: var(--text-mid); margin: 0 !important; line-height: 1.5; }
+  @media (max-width: 700px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .project-header { flex-direction: column; }
+  }
+</style>
 </head>
 
 <body>
@@ -42,7 +169,7 @@
       <p class="intro">
         Software Engineering student at Saigon University, Faculty of Information Technology.
         Experienced in student-level innovation and product research competitions (Level 2).
-        This site presents the final assignment for the Open Source Software Development course.
+        This site showcases my academic projects and technical skills.
       </p>
 
       <div class="links">
@@ -65,20 +192,15 @@
     <div class="toc-card">
       <p class="toc-label">Contents</p>
       <nav class="toc">
-        <a href="#intro" class="toc-item toc-h1">1. Introduction</a>
-        <a href="#bg" class="toc-item toc-h2">1.1 Background &amp; Motivation</a>
-        <a href="#objectives" class="toc-item toc-h2">1.2 Project Objectives</a>
-        <a href="#scope" class="toc-item toc-h2">1.3 Project Scope</a>
-        <a href="#theory" class="toc-item toc-h1">2. Theoretical Foundations</a>
-        <a href="#rag" class="toc-item toc-h2">2.1 RAG</a>
-        <a href="#embed" class="toc-item toc-h2">2.2 Embeddings &amp; Vector DB</a>
-        <a href="#llm" class="toc-item toc-h2">2.3 Large Language Models</a>
-        <a href="#langchain" class="toc-item toc-h2">2.4 LangChain</a>
-        <a href="#prompt" class="toc-item toc-h2">2.5 Prompt Engineering</a>
-        <a href="#design" class="toc-item toc-h1">3. System Design</a>
-        <a href="#arch" class="toc-item toc-h2">3.1 Architecture</a>
-        <a href="#flow" class="toc-item toc-h2">3.2 Data Flow</a>
-        <a href="#components" class="toc-item toc-h2">3.3 Components</a>
+        <a href="#about"    class="toc-item toc-h1">1. About Me</a>
+        <a href="#skills"   class="toc-item toc-h2">1.1 Technical Skills</a>
+        <a href="#edu"      class="toc-item toc-h2">1.2 Education</a>
+        <a href="#projects" class="toc-item toc-h1">2. Projects</a>
+        <a href="#proj1"    class="toc-item toc-h2">2.1 Karaoke Manager</a>
+        <a href="#proj2"    class="toc-item toc-h2">2.2 Dragon Hunter</a>
+        <a href="#proj3"    class="toc-item toc-h2">2.3 FloginFE_BE</a>
+        <a href="#proj4"    class="toc-item toc-h2">2.4 School Bus Tracking</a>
+        <a href="#proj5"    class="toc-item toc-h2">2.5 SmartDoc AI</a>
       </nav>
     </div>
 
@@ -89,435 +211,462 @@
   <main class="content">
 
     <header class="page-header">
-      <div class="header-badge">Open Source Software Development · 2026</div>
-      <h1 class="page-title">Final Assignment Documentation</h1>
+      <div class="header-badge">Portfolio · Saigon University · 2026</div>
+      <h1 class="page-title">Hi, I'm Phedra Nguyen</h1>
       <p class="page-subtitle">
-        This page presents the theoretical foundations and system design of the final assignment
-        for the Open Source Software Development course at Saigon University.
-        The project implements a Retrieval-Augmented Generation (RAG) system for intelligent
-        PDF document question answering, supporting Vietnamese and English with fully local,
-        privacy-preserving inference powered entirely by open-source tools.
+        A passionate Software Engineering student who loves building things — from desktop management systems
+        and arcade games to full-stack web apps and AI-powered tools. Below you'll find a curated
+        collection of my academic and personal projects, each reflecting a different area of my
+        technical growth.
       </p>
     </header>
 
-    <!-- INTRODUCTION -->
-    <section id="intro" class="section">
+    <!-- ABOUT -->
+    <section id="about" class="section">
       <div class="section-number">01</div>
-      <h2 class="section-title">Introduction</h2>
+      <h2 class="section-title">About Me</h2>
 
-      <div id="bg" class="subsection">
-        <h3>1.1 Background and Motivation</h3>
-        <p>
-          In the current digital era, the volume of information stored inside electronic documents
-          is growing at an unprecedented rate. Efficiently searching for and extracting relevant
-          knowledge from such documents has become one of the most pressing challenges in applied
-          Natural Language Processing (NLP). Traditional retrieval methods — such as keyword-based
-          search — are fundamentally limited: they match surface-level terms rather than understanding
-          the true semantic intent behind a user's query, frequently returning irrelevant results or
-          missing critical information expressed in different words.
-        </p>
-        <p>
-          The RAG (Retrieval-Augmented Generation) paradigm was developed to address exactly this gap.
-          By combining two complementary capabilities, RAG systems can understand nuanced questions
-          and return contextually grounded, human-readable answers:
-        </p>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <strong>Information Retrieval</strong>
-            <p>Semantically locate and rank the most relevant passages from a structured knowledge base using dense vector similarity search, going far beyond keyword overlap.</p>
+      <div id="skills" class="subsection">
+        <h3>1.1 Technical Skills</h3>
+        <p>Here's a snapshot of the languages, frameworks, and tools I work with:</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"></div>
+            <strong>Languages</strong>
+            <p>Java · Python · JavaScript · SQL</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">✍️</div>
-            <strong>Natural Language Generation</strong>
-            <p>Produce fluent, factually grounded, and context-aware answers by feeding retrieved passages as context to a large language model during inference.</p>
+          <div class="skill-card">
+            <div class="skill-icon"></div>
+            <strong>Web</strong>
+            <p>React · Django · Spring Boot · Node.js · Express</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"></div>
+            <strong>AI / ML</strong>
+            <p>LangChain · FAISS · HuggingFace · Ollama · RAG</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"></div>
+            <strong>Databases</strong>
+            <p>MySQL · SQLite · H2 · FAISS Vector Store</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"></div>
+            <strong>Testing</strong>
+            <p>JUnit 5 · Mockito · Jest · React Testing Library</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"></div>
+            <strong>Tools</strong>
+            <p>Git · GitHub · AWS EC2 · Maven · Vite · Pygame</p>
           </div>
         </div>
-        <p>
-          This project is motivated by the practical need to build such a system that runs entirely
-          on a personal computer using open-source models and libraries — making advanced AI-powered
-          document Q&amp;A accessible without reliance on paid cloud services or proprietary APIs.
-          Special emphasis is placed on supporting the Vietnamese language, which is historically
-          underserved by mainstream LLM research.
-        </p>
       </div>
 
-      <div id="objectives" class="subsection">
-        <h3>1.2 Project Objectives</h3>
-        <p>The project sets out the following specific and measurable goals:</p>
-        <ol class="styled-list">
-          <li>Build a user-friendly web interface using Django that allows users to upload PDF documents and ask questions interactively.</li>
-          <li>Integrate a multilingual embedding model to convert raw document text into high-dimensional semantic vectors that capture meaning across languages.</li>
-          <li>Deploy a FAISS vector database for efficient, scalable storage of document embeddings and fast approximate nearest-neighbor retrieval at query time.</li>
-          <li>Integrate the Qwen2.5:7b large language model — optimized for Vietnamese — via the Ollama local inference framework, enabling fully offline operation.</li>
-          <li>Build a complete end-to-end RAG pipeline, from PDF ingestion and text splitting through embedding, indexing, retrieval, prompt construction, and final answer generation.</li>
-          <li>Optimize system performance, response accuracy, and multilingual quality, with automatic language detection to ensure answers are returned in the user's language.</li>
-        </ol>
-      </div>
-
-      <div id="scope" class="subsection">
-        <h3>1.3 Project Scope</h3>
-        <p>The project is scoped and constrained as follows:</p>
-        <ul class="styled-list">
-          <li>Input format is limited to PDF documents uploaded directly by the user via the web interface.</li>
-          <li>Full and high-quality support for Vietnamese and English, with general support for 50+ additional languages via the multilingual embedding model.</li>
-          <li>Automatic detection of the user's query language, with prompt templates dynamically selected to produce a response in the matching language.</li>
-          <li>Entirely local deployment on a personal computer — no external cloud APIs, no data transmission, no internet required after the initial model download.</li>
-          <li>Exclusive use of open-source frameworks, models, and libraries: LangChain, FAISS, HuggingFace Transformers, Ollama, and Qwen2.5.</li>
-          <li>The system does not perform real-time web search; it answers only from the content of documents uploaded by the user.</li>
-        </ul>
+      <div id="edu" class="subsection">
+        <h3>1.2 Education</h3>
+        <div class="callout">
+          <span class="callout-icon">🎓</span>
+          <div>
+            <strong>Saigon University — Faculty of Information Technology</strong><br>
+            Bachelor of Software Engineering · 2022 – Present<br>
+            <span style="font-size:0.85rem; color: var(--text-light); margin-top:4px; display:block;">
+              Participated in student-level innovation and product research competitions (Level 2).
+              Coursework covers Software Engineering, AI/ML, Web Development, and Software Testing.
+            </span>
+          </div>
+        </div>
       </div>
     </section>
 
 
-    <!-- THEORY -->
-    <section id="theory" class="section">
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
       <div class="section-number">02</div>
-      <h2 class="section-title">Theoretical Foundations</h2>
+      <h2 class="section-title">Projects</h2>
 
-      <div id="rag" class="subsection">
-        <h3>2.1 Retrieval-Augmented Generation (RAG)</h3>
-        <p>
-          RAG is an AI architecture that enhances language model outputs by grounding them
-          in retrieved external knowledge. Rather than relying solely on the parametric memory
-          encoded in model weights during pre-training, a RAG system dynamically retrieves the most
-          relevant document passages from an external knowledge base at inference time, then provides
-          those passages as context to the language model so it can generate a precise, factually
-          grounded answer.
-        </p>
-        <p>The RAG architecture can be formally expressed as:</p>
-        <div class="callout">
-          <span class="callout-icon">📐</span>
-          <strong>RAG(x) = Generator( x, Retriever(x) )</strong><br>
-          Where <em>x</em> is the user's input query, <em>Retriever(x)</em> fetches the top-k most
-          semantically relevant document chunks from the vector store, and <em>Generator</em> is the
-          large language model that synthesizes a coherent answer conditioned on both the query and
-          the retrieved context.
+      <!-- PROJECT 1 -->
+      <div id="proj1" class="subsection">
+        <div class="project-header">
+          <div class="project-title-wrap">
+            <h3>Karaoke Manager System</h3>
+            <p class="project-tagline">Desktop business management application · Java Group Project</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="project-number">Project 01</span>
+            <a href="https://github.com/thanhquy185/karaoke-manager_javaswing" class="github-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
         </div>
+
         <p>
-          Compared to traditional keyword-based search, RAG offers several key advantages: it understands
-          the deep semantic intent of a query, is not limited by exact term matching, can reference
-          content from user-provided documents that the model was never trained on, and allows the
-          knowledge base to be updated simply by re-indexing new documents — without any model
-          retraining. This makes RAG particularly well-suited for domain-specific or document-centric
-          question answering tasks.
+          A desktop application developed as a group project for a Java programming course.
+          The system is designed to help manage the daily operations of a karaoke business,
+          including user accounts, service management, and reporting features — all in a
+          centralized, secure platform.
         </p>
-        <div class="callout">
-          <span class="callout-icon">💡</span>
-          RAG effectively bridges the gap between the static parametric knowledge frozen inside a
-          pre-trained model and the dynamic, domain-specific information stored in user-provided
-          documents — making it ideal for enterprise document Q&amp;A, legal research, academic
-          literature review, and any scenario where answers must be grounded in a specific corpus.
+
+        <div class="feature-grid" style="margin-bottom: 16px;">
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Authentication System</strong>
+            <p>Login, registration, and role-based authorization with MD5 password hashing.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Business Management</strong>
+            <p>Manage rooms, services, and customers from a single interface.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Reports & Statistics</strong>
+            <p>Operational summaries and the ability to export reports to PDF.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Java Swing UI</strong>
+            <p>Simple and intuitive graphical interface built with Java Swing.</p>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-row">
+            <span class="tech-chip">Java</span>
+            <span class="tech-chip">Java Swing</span>
+            <span class="tech-chip">MySQL</span>
+            <span class="tech-chip">MD5 Hashing</span>
+          </div>
         </div>
       </div>
 
-      <div id="embed" class="subsection">
-        <h3>2.2 Text Embeddings and Vector Databases</h3>
+      <hr class="project-divider">
 
-        <h4>2.2.1 Text Embedding</h4>
-        <p>
-          Text embedding is the process of mapping natural language into fixed-dimensional numerical
-          vectors in a continuous high-dimensional space, formally expressed as:
-        </p>
-        <div class="callout">
-          <span class="callout-icon">📐</span>
-          <strong>E : Text → ℝ<sup>d</sup></strong><br>
-          Where <em>d</em> is the dimensionality of the output vector — commonly 384, 512, or 768
-          dimensions. Semantically similar texts are mapped to geometrically close vectors in this
-          space, while semantically unrelated texts are mapped far apart.
+      <!-- PROJECT 2 -->
+      <div id="proj2" class="subsection">
+        <div class="project-header">
+          <div class="project-title-wrap">
+            <h3>Dragon Hunter Game</h3>
+            <p class="project-tagline">Arcade-style Python game · Pygame &amp; OpenCV</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="project-number">Project 02</span>
+            <a href="https://github.com/DoctorFear/snake-python" class="github-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
         </div>
+
         <p>
-          This property enables <strong>semantic search</strong>: finding the most relevant document
-          chunks based on conceptual meaning rather than exact keyword overlap. Similarity between
-          vectors is measured using cosine similarity or Euclidean distance.
+          An arcade-style game inspired by the classic Snake game, redesigned with modern
+          visuals, sound effects, and improved gameplay mechanics. Players control a dragon
+          hunting for food to grow and earn points, with dynamic visual effects and multiple
+          difficulty levels enhancing the experience.
         </p>
-        <p>
-          This project uses the <strong>paraphrase-multilingual-mpnet-base-v2</strong> model from
-          HuggingFace's Sentence Transformers library. Key characteristics of this model include:
-        </p>
-        <div class="feature-grid">
+
+        <div class="feature-grid" style="margin-bottom: 16px;">
           <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <strong>MPNet Architecture</strong>
-            <p>Combines masked and permuted language modeling, achieving state-of-the-art quality for multilingual semantic similarity tasks.</p>
+            <div class="feature-icon"></div>
+            <strong>Two Difficulty Modes</strong>
+            <p>Easy and Hard modes with dynamic movement and collision detection.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🌐</div>
+            <div class="feature-icon"></div>
+            <strong>Video Background Effects</strong>
+            <p>Custom background video effects powered by OpenCV integration.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Sound System</strong>
+            <p>Integrated sound and music system with smooth animations.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>OOP Design</strong>
+            <p>Object-oriented design structuring all game logic and components.</p>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-row">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">Pygame</span>
+            <span class="tech-chip">OpenCV</span>
+            <span class="tech-chip">pytmx</span>
+            <span class="tech-chip">OOP</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="project-divider">
+
+      <!-- PROJECT 3 -->
+      <div id="proj3" class="subsection">
+        <div class="project-header">
+          <div class="project-title-wrap">
+            <h3>FloginFE_BE</h3>
+            <p class="project-tagline">Full-stack web app · Test-Driven Development · Software Testing Course</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="project-number">Project 03</span>
+            <a href="https://github.com/DoctorFear/FloginTesing262" class="github-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <p>
+          A full-stack web application developed for a Software Testing course, with a focus on
+          applying Test-Driven Development (TDD) practices. The project follows a monorepo
+          architecture combining frontend and backend, with the primary objective of ensuring
+          high code reliability through comprehensive automated testing.
+        </p>
+
+        <div class="component-list" style="margin-bottom: 16px;">
+          <div class="component-item">
+            <div class="comp-tag">Frontend</div>
+            <p>React 18 · Vite · Axios · Jest · React Testing Library · CSS3 Animations</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Backend</div>
+            <p>Spring Boot 3.2 · Java 21 · Spring Data JPA · RESTful API architecture</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Testing</div>
+            <p>JUnit 5 · Mockito · MockMvc — strict TDD workflow with automated tests for both frontend and backend</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Database</div>
+            <p>H2 In-Memory Database (Development) · Maven · npm build tools</p>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-row">
+            <span class="tech-chip">React 18</span>
+            <span class="tech-chip">Spring Boot 3.2</span>
+            <span class="tech-chip">Java 21</span>
+            <span class="tech-chip">JUnit 5</span>
+            <span class="tech-chip">Mockito</span>
+            <span class="tech-chip">Jest</span>
+            <span class="tech-chip">TDD</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="project-divider">
+
+      <!-- PROJECT 4 -->
+      <div id="proj4" class="subsection">
+        <div class="project-header">
+          <div class="project-title-wrap">
+            <h3>School Bus Tracking &amp; Management System</h3>
+            <p class="project-tagline">Real-time tracking web app · Google Maps API · WebSocket</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="project-number">Project 04</span>
+            <a href="https://github.com/DoctorFear/admin-busmap" class="github-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <p>
+          A school bus tracking and management system designed to help administrators, drivers,
+          and parents monitor and manage student transportation in real time. Integrates Google
+          Maps API for live bus location display and WebSocket for real-time updates.
+        </p>
+
+        <div class="feature-grid" style="margin-bottom:16px;">
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Admin</strong>
+            <p>Manage bus routes, schedules, vehicles, and monitor operational status.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Driver</strong>
+            <p>View assigned routes and send alerts or incident notifications.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Parent</strong>
+            <p>Track real-time bus location and receive proximity &amp; delay notifications.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Live Map</strong>
+            <p>Google Maps API integration for real-time route and location visualization.</p>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-row">
+            <span class="tech-chip">React.js</span>
+            <span class="tech-chip">Node.js</span>
+            <span class="tech-chip">Express.js</span>
+            <span class="tech-chip">MySQL</span>
+            <span class="tech-chip">WebSocket</span>
+            <span class="tech-chip">Google Maps API</span>
+            <span class="tech-chip">REST API</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="project-divider">
+
+      <!-- PROJECT 5 -->
+      <div id="proj5" class="subsection">
+        <div class="project-header">
+          <div class="project-title-wrap">
+            <h3>Twilight Selfie</h3>
+            <p class="project-tagline">Daily selfie diary mobile app · Android · MVVM · Room Database</p>
+          </div>
+          <div class="project-meta">
+            <span class="project-number">Project 05</span>
+            <a href="https://github.com/DoctorFear/dailyselfie262" class="github-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+        <p>
+          An Android mobile application for capturing and managing a personal daily selfie diary.
+          Built with MVVM architecture and Room Database, the app stores photos privately
+          (hidden from the system gallery), supports image editing, time-lapse video export,
+          smart daily reminders, and Dropbox cloud backup — all secured behind a PIN lock.
+        </p>
+        <div class="feature-grid" style="margin-bottom:16px;">
+          <div class="feature-card">
+            <strong>Photo Management</strong>
+            <p>Sectioned RecyclerView by date, zoom up to 8x, notes per photo, and batch delete with DiffUtil.</p>
+          </div>
+          <div class="feature-card">
+            <strong>Image Editing</strong>
+            <p>Crop (CanHub Cropper), 5 filters, 90° rotation, and direct save — all without leaving the app.</p>
+          </div>
+          <div class="feature-card">
+            <strong>Time-lapse Export</strong>
+            <p>Select a date range, preview slideshow, adjust playback speed, and export a 1080p MP4 via MediaMuxer.</p>
+          </div>
+          <div class="feature-card">
+            <strong>Smart Reminders &amp; Backup</strong>
+            <p>Daily notification skipped if already captured. Dropbox OAuth2 backup restores 100% of data on any device.</p>
+          </div>
+        </div>
+        <div class="component-list" style="margin-bottom:16px;">
+          <div class="component-item">
+            <div class="comp-tag">Architecture</div>
+            <p>MVVM · Room Database · LiveData · WorkManager · BootReceiver</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">Security</div>
+            <p>PIN Lock (EncryptedSharedPreferences) · Private storage (.nomedia) · Dropbox OAuth2</p>
+          </div>
+          <div class="component-item">
+            <div class="comp-tag">UI</div>
+            <p>Material 3 · PhotoSectionAdapter · Glide · PhotoView · On This Day feature</p>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-row">
+            <span class="tech-chip">Java</span>
+            <span class="tech-chip">Android SDK</span>
+            <span class="tech-chip">Room Database</span>
+            <span class="tech-chip">MVVM</span>
+            <span class="tech-chip">WorkManager</span>
+            <span class="tech-chip">Glide</span>
+            <span class="tech-chip">MediaMuxer</span>
+            <span class="tech-chip">Dropbox API</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="project-divider">
+
+      <!-- PROJECT 6 -->
+      <div id="proj6" class="subsection">
+        <div class="project-header">
+          <div class="project-title-wrap">
+            <h3>SmartDoc AI</h3>
+            <p class="project-tagline">AI-powered PDF Q&amp;A · RAG · Local LLM · Open Source Software Development Course</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="project-number">Project 06</span>
+            <a href="https://github.com/DoctorFear/textsmartdoc-ai" class="github-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <p>
+          The final project for the Open Source Software Development course — an intelligent,
+          fully local PDF document question-answering system powered by a Retrieval-Augmented
+          Generation (RAG) pipeline. Users can upload any PDF and ask questions in Vietnamese
+          or English; the system retrieves semantically relevant passages and generates
+          grounded answers entirely offline using open-source models.
+        </p>
+
+        <div class="callout" style="margin-bottom:16px;">
+          <span class="callout-icon"></span>
+          <span>100% local inference — no cloud APIs, no data transmission. All document content stays on the user's machine.</span>
+        </div>
+
+        <div class="feature-grid" style="margin-bottom:16px;">
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Semantic Search</strong>
+            <p>FAISS vector database with 768-dim multilingual embeddings for accurate retrieval.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Local LLM</strong>
+            <p>Qwen2.5:7b via Ollama — Vietnamese-optimized with 128K context window.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <strong>Bilingual Support</strong>
+            <p>Vietnamese &amp; English with automatic language detection and prompt selection.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
             <strong>50+ Languages</strong>
-            <p>Trained on large multilingual corpora including Vietnamese, enabling high-quality cross-lingual semantic search out of the box.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📏</div>
-            <strong>768-Dimensional Output</strong>
-            <p>Produces rich, high-dimensional embeddings that capture fine-grained semantic nuance suitable for document retrieval.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <strong>CPU-Friendly</strong>
-            <p>Designed to run efficiently on consumer hardware without GPU requirements, enabling local deployment on personal computers.</p>
+            <p>paraphrase-multilingual-mpnet-base-v2 embedding model supports broad multilingual use.</p>
           </div>
         </div>
 
-        <h4>2.2.2 FAISS — Facebook AI Similarity Search</h4>
-        <p>
-          FAISS is a high-performance open-source library developed by Facebook AI Research,
-          designed specifically for efficient similarity search and clustering of dense floating-point
-          vectors. In the context of a RAG system, FAISS serves as the vector database that stores
-          all document chunk embeddings and executes fast retrieval at query time.
-        </p>
-        <p>Key advantages of FAISS in this project:</p>
-        <ul class="styled-list">
-          <li><strong>Scalability:</strong> Supports fast approximate nearest-neighbor (ANN) retrieval over millions of vectors with sub-linear query time.</li>
-          <li><strong>Flexible Indexing:</strong> Offers multiple index types (flat, IVF, HNSW) with different trade-offs between speed, memory, and recall accuracy.</li>
-          <li><strong>GPU Acceleration:</strong> Can leverage NVIDIA GPUs for dramatic speedups when available, while also running efficiently on CPU.</li>
-          <li><strong>Memory-Efficient:</strong> Supports product quantization and other compression techniques to reduce memory footprint for large indices.</li>
-          <li><strong>Open Source &amp; Free:</strong> Released under MIT license, with native Python bindings for easy integration with LangChain.</li>
-        </ul>
-      </div>
-
-      <div id="llm" class="subsection">
-        <h3>2.3 Large Language Models (LLMs)</h3>
-
-        <h4>2.3.1 Qwen2.5</h4>
-        <p>
-          Large Language Models are transformer-based neural networks pre-trained on massive multilingual
-          text corpora spanning hundreds of billions to trillions of tokens. Through this pre-training,
-          they develop broad language understanding capabilities including question answering,
-          summarization, translation, reasoning, and code generation — which can then be applied
-          to domain-specific tasks via prompting alone, without fine-tuning.
-        </p>
-        <p>
-          This project uses <strong>Qwen2.5:7b</strong>, developed by Alibaba Cloud. It was selected
-          for this project due to its exceptional Vietnamese language performance — outperforming models
-          such as Llama 3 on Vietnamese benchmarks — combined with a manageable 7-billion parameter
-          count that runs feasibly on consumer hardware. Key characteristics:
-        </p>
-        <ul class="styled-list">
-          <li><strong>Next-generation Transformer architecture</strong> with improved attention mechanisms and training efficiency.</li>
-          <li><strong>128K token context window</strong>, allowing the model to process long documents and extensive retrieved context without truncation.</li>
-          <li><strong>Trained on multilingual corpus</strong> with substantial Vietnamese content, producing high-quality Vietnamese responses.</li>
-          <li><strong>7B parameters</strong> — a well-balanced scale offering strong generation quality while remaining practical for local inference on a laptop or desktop.</li>
-          <li><strong>Outperforms Llama3</strong> on Vietnamese language understanding and generation tasks.</li>
-        </ul>
-
-        <div class="tech-row">
-          <div class="tech-chip">Qwen2.5:7b</div>
-          <div class="tech-chip">128K Context</div>
-          <div class="tech-chip">Vietnamese-optimized</div>
-          <div class="tech-chip">Multilingual</div>
-          <div class="tech-chip">Local inference</div>
-        </div>
-
-        <h4>2.3.2 Ollama</h4>
-        <p>
-          Ollama is an open-source runtime framework that simplifies the local deployment and execution
-          of large language models on personal computers. Rather than requiring complex CUDA configurations
-          or cloud API subscriptions, Ollama abstracts model management into a single CLI tool and exposes
-          a clean REST API compatible with standard HTTP clients.
-        </p>
-        <p>
-          In this project, Ollama serves the Qwen2.5:7b model locally, providing a fully offline,
-          privacy-preserving inference backend. Once the model is downloaded, the system operates
-          without any internet connection — all user data and document content remains entirely on the
-          local machine.
-        </p>
-      </div>
-
-      <div id="langchain" class="subsection">
-        <h3>2.4 LangChain Framework</h3>
-        <p>
-          LangChain is an open-source Python framework purpose-built for developing applications
-          powered by large language models. Its core design philosophy is composability: each step
-          in an LLM pipeline is represented as a modular, interchangeable component that can be
-          combined with others to build complex workflows with minimal boilerplate code.
-        </p>
-        <p>The key components used in this project are:</p>
-        <div class="component-list">
-          <div class="component-item">
-            <div class="comp-tag">Document Loaders</div>
-            <p>Ingest and parse documents from various file formats (PDF, DOCX, TXT, etc.) into LangChain's standardized Document objects, preserving metadata such as page numbers and source paths.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Text Splitters</div>
-            <p>Divide long documents into smaller, overlapping chunks using strategies such as recursive character splitting. Overlap between chunks ensures that semantic context is not lost at chunk boundaries.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Embeddings</div>
-            <p>Provide a unified interface for generating vector representations of text chunks, supporting HuggingFace models, OpenAI, and other providers through consistent API abstraction.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Vector Stores</div>
-            <p>Manage storage and retrieval of document embeddings. LangChain's FAISS integration handles index creation, persistence, and similarity search queries transparently.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Retrievers</div>
-            <p>Expose a standardized interface for fetching the top-k most relevant document chunks given a query embedding, decoupling retrieval logic from the rest of the pipeline.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Chains</div>
-            <p>Connect all components into an end-to-end pipeline — from raw user query, through retrieval and prompt construction, to final LLM-generated answer — using LangChain's expression language (LCEL).</p>
+        <div class="skills-section">
+          <h4>Tech Stack</h4>
+          <div class="tech-row">
+            <span class="tech-chip">Django</span>
+            <span class="tech-chip">LangChain</span>
+            <span class="tech-chip">FAISS</span>
+            <span class="tech-chip">HuggingFace</span>
+            <span class="tech-chip">Qwen2.5:7b</span>
+            <span class="tech-chip">Ollama</span>
+            <span class="tech-chip">RAG</span>
+            <span class="tech-chip">AWS EC2</span>
           </div>
         </div>
       </div>
 
-      <div id="prompt" class="subsection">
-        <h3>2.5 Prompt Engineering</h3>
-        <p>
-          Prompt Engineering is the practice of carefully designing and optimizing the input text
-          (prompt) provided to a language model in order to guide it toward producing accurate,
-          relevant, and appropriately formatted outputs. In a RAG system, the prompt is the critical
-          bridge between the retrieved document context and the final generated answer — a poorly
-          designed prompt can cause the model to hallucinate, ignore the context, or respond in the
-          wrong language.
-        </p>
-        <p>An effective RAG prompt in this project is structured around four elements:</p>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📋</div>
-            <strong>Instruction</strong>
-            <p>Directs the model on how to behave: use only the provided context, admit uncertainty if the answer is not present, and keep responses concise (3–4 sentences).</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📄</div>
-            <strong>Context</strong>
-            <p>The concatenated top-k document chunks retrieved by FAISS, providing the factual grounding from which the model must derive its answer.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">❓</div>
-            <strong>Question</strong>
-            <p>The user's original query, preserved verbatim so the model understands exactly what is being asked without paraphrase distortion.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <strong>Constraint</strong>
-            <p>Explicit formatting and length constraints that prevent over-verbose outputs and ensure the model responds strictly in the detected user language.</p>
-          </div>
-        </div>
-        <p>
-          A key design feature of this system's prompt engineering is <strong>automatic language
-          detection</strong>. The system inspects the user's query for Vietnamese diacritical
-          characters; if detected, a Vietnamese-language prompt template is selected, instructing
-          the model to respond entirely in Vietnamese. Otherwise, the English prompt template is
-          used. This ensures language-appropriate responses without requiring the user to specify
-          their preferred language explicitly.
-        </p>
-      </div>
-    </section>
-
-
-    <!-- SYSTEM DESIGN -->
-    <section id="design" class="section">
-      <div class="section-number">03</div>
-      <h2 class="section-title">System Design</h2>
-
-      <div id="arch" class="subsection">
-        <h3>3.1 System Architecture</h3>
-        <p>
-          The system is designed following a clean multi-layer architecture that separates concerns
-          across four distinct tiers, each with a well-defined responsibility. This design promotes
-          modularity, independent replaceability of components, and straightforward extensibility
-          as the system evolves.
-        </p>
-        <div class="arch-diagram">
-          <div class="arch-node node-ui">🌐 Presentation Layer<span>Django Web Interface · File Upload · Answer Display</span></div>
-          <div class="arch-arrow">↓</div>
-          <div class="arch-node node-pipe">⚙️ Application Layer<span>LangChain · RAG Pipeline · Prompt Engineering</span></div>
-          <div class="arch-arrow">↓</div>
-          <div class="arch-row">
-            <div class="arch-node node-store">🗄️ Data Layer<span>FAISS Vector Store · MPNet Embeddings (768-dim)</span></div>
-            <div class="arch-node node-llm">🤖 Model Layer<span>Qwen2.5:7b via Ollama · Local LLM Inference</span></div>
-          </div>
-        </div>
-        <p>
-          The <strong>Presentation Layer</strong> is built with Django and handles all user-facing
-          interactions: PDF file uploads, question input, and answer display. The
-          <strong>Application Layer</strong> orchestrates the entire RAG workflow via LangChain,
-          including document processing, prompt construction, and response generation. The
-          <strong>Data Layer</strong> manages the FAISS vector index and the multilingual embedding
-          model. The <strong>Model Layer</strong> runs Qwen2.5:7b locally through Ollama, receiving
-          prompts and returning generated answers entirely offline.
-        </p>
-      </div>
-
-      <div id="flow" class="subsection">
-        <h3>3.2 Data Flow</h3>
-        <p>The system operates through two distinct and sequential processing flows:</p>
-        <div class="flow-grid">
-          <div class="flow-card">
-            <div class="flow-label">📥 Document Ingestion Flow</div>
-            <div class="flow-steps">
-              <span>PDF Upload</span>
-              <span class="arrow">→</span>
-              <span>Text Extraction</span>
-              <span class="arrow">→</span>
-              <span>Chunk Splitting</span>
-              <span class="arrow">→</span>
-              <span>Embedding</span>
-              <span class="arrow">→</span>
-              <span>FAISS Index</span>
-            </div>
-          </div>
-          <div class="flow-card">
-            <div class="flow-label">🔎 Query Processing Flow</div>
-            <div class="flow-steps">
-              <span>User Query</span>
-              <span class="arrow">→</span>
-              <span>Lang Detect</span>
-              <span class="arrow">→</span>
-              <span>Top-k Retrieve</span>
-              <span class="arrow">→</span>
-              <span>Prompt Build</span>
-              <span class="arrow">→</span>
-              <span>LLM Answer</span>
-            </div>
-          </div>
-        </div>
-        <p>
-          During document ingestion, uploaded PDFs are parsed into raw text, split into overlapping
-          chunks of up to 1,000 characters (with 100-character overlap to preserve cross-boundary
-          context), converted into 768-dimensional embeddings, and stored in the FAISS index.
-          During query processing, the user's question is embedded using the same model, the top-3
-          most similar chunks are retrieved from FAISS, assembled into a structured prompt together
-          with the language-appropriate instruction template, and passed to Qwen2.5:7b via Ollama
-          for answer generation.
-        </p>
-      </div>
-
-      <div id="components" class="subsection">
-        <h3>3.3 Component Description</h3>
-        <div class="component-list">
-          <div class="component-item">
-            <div class="comp-tag">Document Loader</div>
-            <p>Uses <strong>PDFPlumberLoader</strong> from LangChain Community to read uploaded PDF files. PDFPlumber accurately extracts text content including tables and multi-column layouts, preserves page structure and layout information, and handles complex PDFs more robustly than simpler text extractors.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Text Splitter</div>
-            <p>Uses LangChain's <strong>RecursiveCharacterTextSplitter</strong> with a chunk size of 1,000 characters and a 100-character overlap. The recursive strategy attempts to split on paragraph boundaries first, then sentence boundaries, then words — minimizing semantic fragmentation. The overlap window ensures that information near chunk boundaries is captured by adjacent chunks.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Embedding Model</div>
-            <p>Uses <strong>paraphrase-multilingual-mpnet-base-v2</strong> via LangChain's HuggingFaceEmbeddings wrapper. Embeddings are computed on CPU with normalized output vectors, producing 768-dimensional representations that support semantic search across Vietnamese, English, Chinese, and 50+ other languages.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Vector Store (FAISS)</div>
-            <p>All document chunk embeddings are stored in a <strong>FAISS flat index</strong> built via LangChain's FAISS integration. At query time, a retriever is configured with <code>search_type="similarity"</code> and <code>k=3</code>, returning the three most semantically relevant chunks to serve as context for the language model.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">LLM Integration</div>
-            <p><strong>Qwen2.5:7b</strong> is served locally via the Ollama runtime, accessed through LangChain's Ollama integration. The model receives a fully constructed prompt containing the retrieval context and the user's question, and generates a concise, grounded answer. All inference runs on the local machine — no data leaves the user's device.</p>
-          </div>
-          <div class="component-item">
-            <div class="comp-tag">Prompt Engine</div>
-            <p>The prompt engine automatically detects the language of the user's query by scanning for Vietnamese diacritical characters. Based on the detection result, it selects the appropriate language-specific prompt template — Vietnamese or English — and injects the retrieved context and user question before dispatching to the LLM.</p>
-          </div>
-        </div>
-      </div>
     </section>
 
 
     <footer class="page-footer">
       <div class="footer-line"></div>
-      <p>© 2026 Phedra Nguyen · Open Source Software Development · Saigon University</p>
+      <p>© 2026 Phedra Nguyen · Software Engineering Student · Saigon University</p>
     </footer>
 
   </main>
