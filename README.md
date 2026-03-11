@@ -59,15 +59,13 @@ pip install -r requirements.txt
 python3 manage.py runserver
 ```
 
-Visit `http://127.0.0.1:8000` in your browser.
-
 ---
 
 ## Deployment
 
 The application is deployed on **AWS EC2** (Ubuntu) with Nginx as the web server.
 
-Live URL: `http://3.27.10.42`
+Live URL: `http://<IP ON AWS EC2>`
 
 ---
 
